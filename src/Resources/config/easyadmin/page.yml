@@ -1,0 +1,16 @@
+easy_admin:
+    entities:
+        Page:
+            class: '%lyssal.seo.entity.page.class%'
+            form:
+                fields:
+                    - 'website'
+                    - 'title'
+                    - 'description'
+                    - 'locale'
+                    - 'indexed'
+                    - 'followed'
+                    - 'modificationFrequency'
+                    - 'priority'
+                    - 'category'
+                    - 'author'

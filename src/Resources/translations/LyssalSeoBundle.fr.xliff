@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="author">
+                <source>author</source>
+                <target>Auteur</target>
+            </trans-unit>
+            <trans-unit id="category">
+                <source>category</source>
+                <target>Catégorie</target>
+            </trans-unit>
+            <trans-unit id="copyright">
+                <source>copyright</source>
+                <target>Mentions légales</target>
+            </trans-unit>
+            <trans-unit id="description">
+                <source>description</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="domain">
+                <source>domain</source>
+                <target>Domaine</target>
+            </trans-unit>
+            <trans-unit id="followed">
+                <source>followed</source>
+                <target>Liens suivis</target>
+            </trans-unit>
+            <trans-unit id="frequency.always">
+                <source>frequency.always</source>
+                <target>Toujours</target>
+            </trans-unit>
+            <trans-unit id="frequency.daily">
+                <source>frequency.daily</source>
+                <target>Quotidiennement</target>
+            </trans-unit>
+            <trans-unit id="frequency.hourly">
+                <source>frequency.hourly</source>
+                <target>Toutes les heures</target>
+            </trans-unit>
+            <trans-unit id="frequency.monthly">
+                <source>frequency.monthly</source>
+                <target>Mensuellement</target>
+            </trans-unit>
+            <trans-unit id="frequency.never">
+                <source>frequency.never</source>
+                <target>Jamais</target>
+            </trans-unit>
+            <trans-unit id="frequency.weekly">
+                <source>frequency.weekly</source>
+                <target>Hebdomadairement</target>
+            </trans-unit>
+            <trans-unit id="frequency.yearly">
+                <source>frequency.yearly</source>
+                <target>Annuellement</target>
+            </trans-unit>
+            <trans-unit id="generator">
+                <source>generator</source>
+                <target>Générateur</target>
+            </trans-unit>
+            <trans-unit id="indexed">
+                <source>indexed</source>
+                <target>Indexé</target>
+            </trans-unit>
+            <trans-unit id="locale">
+                <source>locale</source>
+                <target>Code langue</target>
+            </trans-unit>
+            <trans-unit id="modification_frequency">
+                <source>modification_frequency</source>
+                <target>Fréquence de modification</target>
+            </trans-unit>
+            <trans-unit id="page">
+                <source>page</source>
+                <target>Page</target>
+            </trans-unit>
+            <trans-unit id="priority">
+                <source>priority</source>
+                <target>Priorité (%)</target>
+            </trans-unit>
+            <trans-unit id="publisher">
+                <source>publisher</source>
+                <target>Éditeur</target>
+            </trans-unit>
+            <trans-unit id="reply_to">
+                <source>reply_to</source>
+                <target>Réponse à</target>
+            </trans-unit>
+            <trans-unit id="title">
+                <source>title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="website">
+                <source>website</source>
+                <target>Site internet</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

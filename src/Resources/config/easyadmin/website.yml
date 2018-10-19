@@ -1,0 +1,13 @@
+easy_admin:
+    entities:
+        Website:
+            class: '%lyssal.seo.entity.website.class%'
+            form:
+                fields:
+                    - 'title'
+                    - 'domain'
+                    - 'author'
+                    - 'publisher'
+                    - 'copyright'
+                    - 'generator'
+                    - 'replyTo'

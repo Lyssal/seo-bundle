@@ -1,0 +1,3 @@
+lyssal_seo:
+  resource: '../../Controller/'
+  type: 'annotation'

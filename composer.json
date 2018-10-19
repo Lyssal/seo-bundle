@@ -1,0 +1,23 @@
+{
+    "name": "lyssal/seo-bundle",
+    "description": "A bundle to manage SEO in your website.",
+	"license" : "proprietary",
+    "type": "symfony-bundle",
+    "authors": [
+        {
+            "name": "Rémi Leclerc",
+            "homepage": "http://www.lyssal.com/"
+        }
+    ],
+    "require": {
+        "symfony/form": "~4",
+        "symfony/validator": "~4",
+        "lyssal/seo": "~0.1",
+        "lyssal/doctrine-orm-bundle": "~0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lyssal\\SeoBundle\\": "src/"
+        }
+    }
+}

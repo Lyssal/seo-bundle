@@ -1,0 +1,19 @@
+imports:
+    - { resource: 'services/*.yaml' }
+
+parameters:
+    lyssal.seo.entity.page.class: 'Lyssal\SeoBundle\Entity\Page'
+    lyssal.seo.entity.website.class: 'Lyssal\SeoBundle\Entity\Website'
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+        bind:
+            $locale: '%locale%'
+            $pageClassname: '%lyssal.seo.entity.page.class%'
+            $websiteClassname: '%lyssal.seo.entity.website.class%'
+
+    Lyssal\SeoBundle\:
+        resource: '../../{Form}/'

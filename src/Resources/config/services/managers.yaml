@@ -1,0 +1,14 @@
+parameters:
+    lyssal.seo.manager.page.class: 'Lyssal\SeoBundle\Manager\PageManager'
+    lyssal.seo.manager.website.class: 'Lyssal\SeoBundle\Manager\WebsiteManager'
+
+services:
+    lyssal.seo.manager.page:
+        class: '%lyssal.seo.manager.page.class%'
+        arguments: ['@doctrine.orm.entity_manager', '%lyssal.seo.entity.page.class%']
+        public: true
+
+    lyssal.seo.manager.website:
+        class: '%lyssal.seo.manager.website.class%'
+        arguments: ['@doctrine.orm.entity_manager', '%lyssal.seo.entity.website.class%']
+        public: true
