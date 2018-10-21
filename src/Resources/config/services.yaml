@@ -16,4 +16,4 @@ services:
             $websiteClassname: '%lyssal.seo.entity.website.class%'
 
     Lyssal\SeoBundle\:
-        resource: '../../{Form}/'
+        resource: '../../{Form,Slug}/'

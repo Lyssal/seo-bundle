@@ -1,3 +1,3 @@
 imports:
-    - { resource: 'easyadmin/website.yml' }
-    - { resource: 'easyadmin/page.yml' }
+    - { resource: 'easyadmin/website.yaml' }
+    - { resource: 'easyadmin/page.yaml' }

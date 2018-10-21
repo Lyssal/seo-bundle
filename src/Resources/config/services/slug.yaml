@@ -1,0 +1,7 @@
+parameters:
+    lyssal.seo.slug.slug_generator.class: 'Lyssal\SeoBundle\Slug\SlugGenerator'
+
+services:
+    lyssal.seo.slug.slug_generator:
+        class: '%lyssal.seo.slug.slug_generator.class%'
+        public: false

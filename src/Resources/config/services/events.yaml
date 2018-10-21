@@ -1,0 +1,13 @@
+parameters:
+    lyssal.seo.event_listener.page_slugger.class: 'Lyssal\SeoBundle\EventListener\PageSlugger'
+
+services:
+    _defaults:
+        autowire: true
+
+    lyssal.seo.event_listener.page_slugger:
+        class: '%lyssal.seo.event_listener.page_slugger.class%'
+        public: false
+        tags:
+            - { name: 'doctrine.event_listener', event: 'prePersist' }
+            - { name: 'doctrine.event_listener', event: 'preUpdate' }
