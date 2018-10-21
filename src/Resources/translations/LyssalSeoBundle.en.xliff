@@ -70,6 +70,10 @@
                 <source>modification_frequency</source>
                 <target>Modification frequency</target>
             </trans-unit>
+            <trans-unit id="online">
+                <source>online</source>
+                <target>Online</target>
+            </trans-unit>
             <trans-unit id="page">
                 <source>page</source>
                 <target>Page</target>
@@ -85,6 +89,10 @@
             <trans-unit id="reply_to">
                 <source>reply_to</source>
                 <target>Reply to</target>
+            </trans-unit>
+            <trans-unit id="slug">
+                <source>slug</source>
+                <target>Slug</target>
             </trans-unit>
             <trans-unit id="title">
                 <source>title</source>

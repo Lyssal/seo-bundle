@@ -5,7 +5,9 @@ easy_admin:
             form:
                 fields:
                     - 'website'
+                    - 'online'
                     - 'title'
+                    - 'slug'
                     - 'description'
                     - 'locale'
                     - 'indexed'

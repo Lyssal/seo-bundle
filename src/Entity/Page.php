@@ -7,6 +7,7 @@
  */
 namespace Lyssal\SeoBundle\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Lyssal\Seo\Model\Page as LyssalPage;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -39,9 +40,23 @@ class Page extends LyssalPage
     /**
      * {@inheritDoc}
      *
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    protected $online;
+
+    /**
+     * {@inheritDoc}
+     *
      * @ORM\Column(type="string", length=255, nullable=false)
      */
     protected $title;
+
+    /**
+     * {@inheritDoc}
+     *
+     * @ORM\Column(type="string", length=768, nullable=true, unique=true)
+     */
+    protected $slug;
 
     /**
      * {@inheritDoc}

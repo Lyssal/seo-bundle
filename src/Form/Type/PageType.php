@@ -71,8 +71,16 @@ class PageType extends AbstractType
                 'label' => 'website',
                 'translation_domain' => 'LyssalSeoBundle'
             ])
+            ->add('online', null, [
+                'label' => 'online',
+                'translation_domain' => 'LyssalSeoBundle'
+            ])
             ->add('title', null, [
                 'label' => 'title',
+                'translation_domain' => 'LyssalSeoBundle'
+            ])
+            ->add('slug', null, [
+                'label' => 'slug',
                 'translation_domain' => 'LyssalSeoBundle'
             ])
             ->add('description', null, [
