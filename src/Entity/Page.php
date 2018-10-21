@@ -117,7 +117,7 @@ class Page extends LyssalPage
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
      */
-    protected function initUpdatedAt()
+    public function initUpdatedAt()
     {
         $this->updatedAt = new DateTime();
     }
