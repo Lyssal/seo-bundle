@@ -66,7 +66,7 @@ class SlugGenerator
     {
         Slug::$MINIFICATION_ALLOWED_CHARACTERS .= '\/';
         $slug = new Slug(substr($pageable->getPatternForSlug(), 0, 768 - 4));
-        $slug->minify();
+        $slug->minify('_', false);
 
         while (null !== $this->entityManager->getRepository($this->pageClassname)->findOneBy(['slug' => $slug->getText()])) {
             $slug->next();
