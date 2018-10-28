@@ -10,9 +10,16 @@ namespace Lyssal\SeoBundle\Entity;
 use Lyssal\Seo\Model\PageableInterface as SeoPageableInterface;
 
 /**
- * @inheritDoc
+ * {@inheritDoc}
+ *
+ * @method \Lyssal\SeoBundle\Entity\Page getPage()
  */
 interface PageableInterface extends SeoPageableInterface
 {
-
+    /**
+     * Get the ID.
+     *
+     * @return int The ID
+     */
+    public function getId();
 }

@@ -39,11 +39,17 @@ class Website extends LyssalWebsite
     /**
      * {@inheritDoc}
      *
-     * @ORM\Column(type="string", length=255, nullable=false)
-     *
-     * @Assert\Url()
+     * @ORM\ManyToOne(targetEntity="Page")
+     * @ORM\JoinColumn(nullable=true)
      */
-    protected $domain;
+    protected $homePage;
+
+    /**
+     * @var bool If It is the website by default
+     *
+     * @ORM\Column(type="boolean", nullable=false, options={"default"=false})
+     */
+    protected $byDefault;
 
     /**
      * {@inheritDoc}
@@ -89,12 +95,37 @@ class Website extends LyssalWebsite
      */
     protected $pages;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection The hosts
+     *
+     * @ORM\OneToMany(targetEntity="Host", mappedBy="website", cascade={"persist"}, orphanRemoval=true)
+     */
+    protected $hosts;
+
 
     public function __construct()
     {
         $this->pages = new ArrayCollection();
+        $this->hosts = new ArrayCollection();
     }
 
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function isByDefault(): ?bool
+    {
+        return $this->byDefault;
+    }
+
+    public function setByDefault(bool $byDefault): self
+    {
+        $this->byDefault = $byDefault;
+
+        return $this;
+    }
 
     /**
      * @return Collection|Page[]
@@ -121,6 +152,37 @@ class Website extends LyssalWebsite
             // set the owning side to null (unless already changed)
             if ($page->getWebsite() === $this) {
                 $page->setWebsite(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Host[]
+     */
+    public function getHosts(): Collection
+    {
+        return $this->hosts;
+    }
+
+    public function addHost(Host $host): self
+    {
+        if (!$this->hosts->contains($host)) {
+            $this->hosts[] = $host;
+            $host->setWebsite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHost(Host $host): self
+    {
+        if ($this->hosts->contains($host)) {
+            $this->hosts->removeElement($host);
+            // set the owning side to null (unless already changed)
+            if ($host->getWebsite() === $this) {
+                $host->setWebsite(null);
             }
         }
 

@@ -6,6 +6,10 @@
                 <source>author</source>
                 <target>Author</target>
             </trans-unit>
+            <trans-unit id="by_default">
+                <source>by_default</source>
+                <target>By default</target>
+            </trans-unit>
             <trans-unit id="category">
                 <source>category</source>
                 <target>Category</target>
@@ -58,6 +62,14 @@
                 <source>generator</source>
                 <target>Generator</target>
             </trans-unit>
+            <trans-unit id="home_page">
+                <source>home_page</source>
+                <target>Home page</target>
+            </trans-unit>
+            <trans-unit id="host">
+                <source>host</source>
+                <target>Host</target>
+            </trans-unit>
             <trans-unit id="indexed">
                 <source>indexed</source>
                 <target>Indexed</target>
@@ -69,6 +81,14 @@
             <trans-unit id="modification_frequency">
                 <source>modification_frequency</source>
                 <target>Modification frequency</target>
+            </trans-unit>
+            <trans-unit id="moved_permanently">
+                <source>moved_permanently</source>
+                <target>Permanent redirection</target>
+            </trans-unit>
+            <trans-unit id="moved_temporarily">
+                <source>moved_temporarily</source>
+                <target>Temporary redirection</target>
             </trans-unit>
             <trans-unit id="online">
                 <source>online</source>
@@ -85,6 +105,14 @@
             <trans-unit id="publisher">
                 <source>publisher</source>
                 <target>Publisher</target>
+            </trans-unit>
+            <trans-unit id="redirection_code">
+                <source>redirection_code</source>
+                <target>Redirection code</target>
+            </trans-unit>
+            <trans-unit id="redirection_host">
+                <source>redirection_host</source>
+                <target>Redirection host</target>
             </trans-unit>
             <trans-unit id="reply_to">
                 <source>reply_to</source>

@@ -9,8 +9,8 @@ namespace Lyssal\SeoBundle\Slug;
 
 use Doctrine\ORM\EntityManager;
 use Lyssal\SeoBundle\Entity\PageableInterface;
-use Lyssal\SeoBundle\Manager\PageManager;
 use Lyssal\Text\Slug;
+use Symfony\Component\Routing\RouterInterface;
 
 /**
  * The slug generator.
@@ -29,6 +29,11 @@ class SlugGenerator
     protected $entityManager;
 
     /**
+     * @var \Symfony\Component\Routing\RouterInterface The router
+     */
+    protected $router;
+
+    /**
      * @var string The Page classname
      */
     protected $pageClassname;
@@ -37,10 +42,12 @@ class SlugGenerator
     /**
      * SlugGenerator constructor.
      *
-     * @param string $pageClassname The Page classname
+     * @param \Symfony\Component\Routing\RouterInterface $router        The router
+     * @param string                                     $pageClassname The Page classname
      */
-    public function __construct($pageClassname)
+    public function __construct(RouterInterface $router, $pageClassname)
     {
+        $this->router = $router;
         $this->pageClassname = $pageClassname;
     }
 
@@ -68,12 +75,38 @@ class SlugGenerator
         $slug = new Slug(substr($pageable->getPatternForSlug(), 0, 768 - 4));
         $slug->minify('_', false);
 
-        while (null !== $this->entityManager->getRepository($this->pageClassname)->findOneBy(['slug' => $slug->getText()])) {
+        while (
+            null !== $this->entityManager->getRepository($this->pageClassname)->findOneBy(['slug' => $slug->getText()])
+            || $this->urlAlreadyExists('/'.$slug->getText())
+        ) {
             $slug->next();
         }
 
         $pageable->getPage()->setSlug($slug->getText());
         $this->entityManager->persist($pageable);
         $this->entityManager->flush();
+    }
+
+    /**
+     * Return if the URL exists in an other route.
+     *
+     * @param string $url The URL
+     *
+     * @return bool If the URL exists
+     */
+    protected function urlAlreadyExists(string $url): bool
+    {
+        // We do not check dynamic URL with math() because It does not work with POST method (or other)
+        $routeCollection = $this->router->getRouteCollection();
+        /**
+         * @var \Symfony\Component\Routing\Route $route
+         */
+        foreach ($routeCollection as $route) {
+            if ($url === $route->getPath()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

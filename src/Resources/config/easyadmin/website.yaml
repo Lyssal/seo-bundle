@@ -5,7 +5,9 @@ easy_admin:
             form:
                 fields:
                     - 'title'
-                    - 'domain'
+                    - 'homePage'
+                    - 'byDefault'
+                    - { property: 'hosts', type: 'collection', type_options: { entry_type: 'Lyssal\SeoBundle\Form\Type\HostType', by_reference: false } }
                     - 'author'
                     - 'publisher'
                     - 'copyright'

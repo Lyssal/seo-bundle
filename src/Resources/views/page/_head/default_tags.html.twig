@@ -1,0 +1,16 @@
+{{ include('@LyssalSeo/page/_head/title.html.twig') }}
+{{ include('@LyssalSeo/page/_head/website_default_tags.html.twig', { 'website': page.website }) }}
+{%- if page.category is not empty -%}
+    <meta name="category" content="{{ page.category }}">
+{%- endif -%}
+<meta name="robots" content="{% if not page.indexed %}no{% endif %}index, {% if not page.followed %}no{% endif %}follow">
+{%- if page.description is not empty -%}
+    <meta name="description" content="{{ page.description }}">
+{%- endif -%}
+{%- if page.author is not empty or page.website.author is not empty -%}
+    <meta name="author" content="{{ page.author is not empty ? page.author : page.website.author }}">
+{%- endif -%}
+{%- if page.updatedAt is not null -%}
+    <meta http-equiv="last-modified" content="{{ page.updatedAt|date('Y-m-d H:i') }}">
+{%- endif -%}
+

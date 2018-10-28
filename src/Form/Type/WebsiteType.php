@@ -9,7 +9,6 @@ namespace Lyssal\SeoBundle\Form\Type;
 
 use Lyssal\Seo\Model\Page;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -49,8 +48,12 @@ class WebsiteType extends AbstractType
                 'label' => 'title',
                 'translation_domain' => 'LyssalSeoBundle'
             ])
-            ->add('domain', null, [
-                'label' => 'domain',
+            ->add('homePage', null, [
+                'label' => 'home_page',
+                'translation_domain' => 'LyssalSeoBundle'
+            ])
+            ->add('byDefault', null, [
+                'label' => 'by_default',
                 'translation_domain' => 'LyssalSeoBundle'
             ])
             ->add('author', null, [

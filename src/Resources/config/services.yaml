@@ -2,6 +2,7 @@ imports:
     - { resource: 'services/*.yaml' }
 
 parameters:
+    lyssal.seo.entity.host.class: 'Lyssal\SeoBundle\Entity\Host'
     lyssal.seo.entity.page.class: 'Lyssal\SeoBundle\Entity\Page'
     lyssal.seo.entity.website.class: 'Lyssal\SeoBundle\Entity\Website'
 
@@ -12,8 +13,21 @@ services:
         public: false
         bind:
             $locale: '%locale%'
+            $hostClassname: '%lyssal.seo.entity.host.class%'
+            $hostManager: '@lyssal.seo.manager.host'
             $pageClassname: '%lyssal.seo.entity.page.class%'
             $websiteClassname: '%lyssal.seo.entity.website.class%'
+            $websiteManager: '@lyssal.seo.manager.website'
 
     Lyssal\SeoBundle\:
-        resource: '../../{Form,Slug}/'
+        resource: '../../{Form,Host,Router,Slug,Website}/'
+
+    Lyssal\SeoBundle\Host\CurrentHost:
+        public: true
+
+    Lyssal\SeoBundle\Website\CurrentWebsite:
+        public: true
+
+    Lyssal\SeoBundle\Router\PageableRouter:
+        tags:
+            - { name: 'lyssal.entity_router' }

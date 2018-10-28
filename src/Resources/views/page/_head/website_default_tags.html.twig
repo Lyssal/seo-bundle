@@ -1,0 +1,12 @@
+{%- if website.publisher is not empty -%}
+    <meta name="publisher" content="{{ website.publisher }}">
+{%- endif -%}
+{%- if website.replyTo is not empty -%}
+    <meta name="reply-to" content="{{ website.replyTo }}">
+{%- endif -%}
+{%- if website.copyright is not empty -%}
+    <meta name="copyright" content="{{ website.copyright }}">
+{%- endif -%}
+{%- if website.generator is not empty -%}
+    <meta name="generator" content="{{ website.generator }}">
+{%- endif -%}

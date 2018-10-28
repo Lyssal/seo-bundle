@@ -8,11 +8,14 @@
 namespace Lyssal\SeoBundle\EventListener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
+use Lyssal\SeoBundle\Entity\Page;
 use Lyssal\SeoBundle\Entity\PageableInterface;
 use Lyssal\SeoBundle\Slug\SlugGenerator;
 
 /**
  * The listener to generate slug on pages.
+ *
+ * We use post events because if we clear the slug and regenerate, if the slug is same a -# will be added at the end of the slug.
  */
 class PageSlugger
 {
@@ -36,7 +39,7 @@ class PageSlugger
     /**
      * @see \Lyssal\SeoBundle\EventListener\PageSlugger::generateSlugIfNeed()
      */
-    public function prePersist(LifecycleEventArgs $args)
+    public function postPersist(LifecycleEventArgs $args)
     {
         $this->generateSlugIfNeed($args);
     }
@@ -44,7 +47,7 @@ class PageSlugger
     /**
      * @see \Lyssal\SeoBundle\EventListener\PageSlugger::generateSlugIfNeed()
      */
-    public function preUpdate(LifecycleEventArgs $args)
+    public function postUpdate(LifecycleEventArgs $args)
     {
         $this->generateSlugIfNeed($args);
     }
@@ -56,12 +59,25 @@ class PageSlugger
      */
     protected function generateSlugIfNeed(LifecycleEventArgs $args): void
     {
-        $pageable = $args->getEntity();
+        $entity = $args->getEntity();
 
-        if (!($pageable instanceof PageableInterface)) {
-            return;
+        if ($entity instanceof PageableInterface) {
+            $this->generateSlugForPageableIfNeed($entity, $args);
         }
 
+        if ($entity instanceof Page && $entity->getEntity() instanceof PageableInterface) {
+            $this->generateSlugForPageableIfNeed($entity->getEntity(), $args);
+        }
+    }
+
+    /**
+     * Generate the slug for the pageable if needed.
+     *
+     * @param \Lyssal\SeoBundle\Entity\PageableInterface $pageable The pageable
+     * @param \Doctrine\ORM\Event\LifecycleEventArgs     $args     The arguments
+     */
+    protected function generateSlugForPageableIfNeed(PageableInterface $pageable, LifecycleEventArgs $args): void
+    {
         if ($pageable->canGenerateSlug()) {
             $this->slugGenerator->setEntityManager($args->getEntityManager());
             $this->slugGenerator->generate($pageable);
