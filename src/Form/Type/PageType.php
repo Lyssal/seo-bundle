@@ -47,6 +47,10 @@ class PageType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $onlineOptions = [
+            'label' => 'online',
+            'translation_domain' => 'LyssalSeoBundle'
+        ];
         $localeOptions = [
             'label' => 'locale',
             'translation_domain' => 'LyssalSeoBundle'
@@ -61,6 +65,7 @@ class PageType extends AbstractType
         ];
 
         if (null === $builder->getData()) {
+            $onlineOptions['data'] = true;
             $localeOptions['data'] = $this->locale;
             $indexedOptions['data'] = true;
             $followedOptions['data'] = true;
@@ -71,10 +76,7 @@ class PageType extends AbstractType
                 'label' => 'website',
                 'translation_domain' => 'LyssalSeoBundle'
             ])
-            ->add('online', null, [
-                'label' => 'online',
-                'translation_domain' => 'LyssalSeoBundle'
-            ])
+            ->add('online', null, $onlineOptions)
             ->add('title', null, [
                 'label' => 'title',
                 'translation_domain' => 'LyssalSeoBundle'
