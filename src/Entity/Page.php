@@ -131,10 +131,59 @@ class Page extends LyssalPage implements EntityableInterface, RoutableInterface
      */
     protected $author;
 
+    /**
+     * @var bool If the page is not linked to an entity
+     *
+     * @ORM\Column(type="boolean", nullable=false, options={"default"=false})
+     */
+    protected $independent;
+
+    /**
+     * @var string The content which can be use an introduction or content if the page is independent
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $content;
+
+
+    /**
+     * Page constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->independent = false;
+    }
+
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function isIndependent(): bool
+    {
+        return $this->independent;
+    }
+
+    public function setIndependent(bool $independent): self
+    {
+        $this->independent = $independent;
+
+        return $this;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(?string $content): self
+    {
+        $this->content = $content;
+
+        return $this;
     }
 
 

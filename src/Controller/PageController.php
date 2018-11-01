@@ -42,6 +42,9 @@ class PageController extends AbstractController
             throw $this->createNotFoundException('The website has not been found.');
         }
 
+        /**
+         * @var \Lyssal\SeoBundle\Entity\Page $page
+         */
         if ('' === $slug && null !== $website->getHomePage()) {
             $page = $website->getHomePage();
         } else {
@@ -50,6 +53,10 @@ class PageController extends AbstractController
 
         if (null === $page) {
             throw $this->createNotFoundException('The page has not been found. Maybe the slug is wrong or you have to change the order of calls in the routing file.');
+        }
+
+        if ($page->isIndependent()) {
+            return $this->render('@LyssalSeo/page/show.html.twig', ['page' => $page]);
         }
 
         $entity = $this->container->get('lyssal.seo.manager.page')->getEntity($page);

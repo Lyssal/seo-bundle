@@ -8,6 +8,8 @@
 namespace Lyssal\SeoBundle\Slug;
 
 use Doctrine\ORM\EntityManager;
+use Lyssal\Entity\Appellation\AppellationManager;
+use Lyssal\SeoBundle\Entity\Page;
 use Lyssal\SeoBundle\Entity\PageableInterface;
 use Lyssal\Text\Slug;
 use Symfony\Component\Routing\RouterInterface;
@@ -34,6 +36,11 @@ class SlugGenerator
     protected $router;
 
     /**
+     * @var \Lyssal\Entity\Appellation\AppellationManager The appellation manager
+     */
+    protected $appellationManager;
+
+    /**
      * @var string The Page classname
      */
     protected $pageClassname;
@@ -42,12 +49,14 @@ class SlugGenerator
     /**
      * SlugGenerator constructor.
      *
-     * @param \Symfony\Component\Routing\RouterInterface $router        The router
-     * @param string                                     $pageClassname The Page classname
+     * @param \Symfony\Component\Routing\RouterInterface    $router             The router
+     * @param \Lyssal\Entity\Appellation\AppellationManager $appellationManager The appellation manager
+     * @param string                                        $pageClassname      The Page classname
      */
-    public function __construct(RouterInterface $router, $pageClassname)
+    public function __construct(RouterInterface $router, AppellationManager $appellationManager, $pageClassname)
     {
         $this->router = $router;
+        $this->appellationManager = $appellationManager;
         $this->pageClassname = $pageClassname;
     }
 
@@ -66,13 +75,41 @@ class SlugGenerator
      * Generate the page slug.
      *
      * @param \Lyssal\SeoBundle\Entity\PageableInterface $pageable The pageable
-     *
-     * @return string The slug
      */
-    public function generate(PageableInterface $pageable): void
+    public function generateForPageable(PageableInterface $pageable)
+    {
+        $slug = $this->getSlug($pageable->getPatternForSlug());
+        $pageable->getPage()->setSlug($slug);
+
+        $this->entityManager->persist($pageable);
+        $this->entityManager->flush();
+    }
+
+    /**
+     * Generate the page slug.
+     *
+     * @param \Lyssal\SeoBundle\Entity\Page $page The page
+     */
+    public function generateForPage(Page $page)
+    {
+        $slug = $this->getSlug($this->appellationManager->appellation($page));
+        $page->setSlug($slug);
+
+        $this->entityManager->persist($page);
+        $this->entityManager->flush();
+    }
+
+    /**
+     * Get an available slug.
+     *
+     * @param string $patternSlug The slug pattern
+     *
+     * @return string The generated slug
+     */
+    protected function getSlug(string $patternSlug): string
     {
         Slug::$MINIFICATION_ALLOWED_CHARACTERS .= '\/';
-        $slug = new Slug(substr($pageable->getPatternForSlug(), 0, 768 - 4));
+        $slug = new Slug(substr($patternSlug, 0, 768 - 4));
         $slug->minify('_', false);
 
         while (
@@ -82,9 +119,7 @@ class SlugGenerator
             $slug->next();
         }
 
-        $pageable->getPage()->setSlug($slug->getText());
-        $this->entityManager->persist($pageable);
-        $this->entityManager->flush();
+        return $slug->getText();
     }
 
     /**

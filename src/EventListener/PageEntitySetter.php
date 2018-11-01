@@ -59,13 +59,16 @@ class PageEntitySetter
     protected function setPageableEntity(PageableInterface $pageable, LifecycleEventArgs $args): void
     {
         $page = $pageable->getPage();
-        $pageableClass = get_class($pageable);
-        if ($pageableClass !== $page->getEntityClass() && $pageable->getId() !== $page->getEntityId()) {
-            $page->setEntityClass($pageableClass);
-            $page->setEntityId($pageable->getId());
 
-            $args->getEntityManager()->persist($page);
-            $args->getEntityManager()->flush();
+        if (!$page->isIndependent()) {
+            $pageableClass = get_class($pageable);
+            if ($pageableClass !== $page->getEntityClass() && $pageable->getId() !== $page->getEntityId()) {
+                $page->setEntityClass($pageableClass);
+                $page->setEntityId($pageable->getId());
+
+                $args->getEntityManager()->persist($page);
+                $args->getEntityManager()->flush();
+            }
         }
     }
 }

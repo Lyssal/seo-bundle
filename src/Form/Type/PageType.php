@@ -109,6 +109,14 @@ class PageType extends AbstractType
                 'label' => 'author',
                 'translation_domain' => 'LyssalSeoBundle'
             ])
+            ->add('independent', null, [
+                'label' => 'page.independent',
+                'translation_domain' => 'LyssalSeoBundle'
+            ])
+            ->add('content', null, [
+                'label' => 'content',
+                'translation_domain' => 'LyssalSeoBundle'
+            ])
         ;
     }
 

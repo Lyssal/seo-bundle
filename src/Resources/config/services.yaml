@@ -14,10 +14,11 @@ services:
         bind:
             $locale: '%locale%'
             $hostClassname: '%lyssal.seo.entity.host.class%'
-            $hostManager: '@lyssal.seo.manager.host'
             $pageClassname: '%lyssal.seo.entity.page.class%'
             $websiteClassname: '%lyssal.seo.entity.website.class%'
+            $hostManager: '@lyssal.seo.manager.host'
             $websiteManager: '@lyssal.seo.manager.website'
+            $appellationManager: '@lyssal.appellation'
 
     Lyssal\SeoBundle\:
         resource: '../../{Form,Host,Router,Slug,Website}/'

@@ -37,19 +37,19 @@ class PageSlugger
 
 
     /**
-     * @see \Lyssal\SeoBundle\EventListener\PageSlugger::generateSlugIfNeed()
+     * @see \Lyssal\SeoBundle\EventListener\PageSlugger::generateSlugIfNeeded()
      */
     public function postPersist(LifecycleEventArgs $args)
     {
-        $this->generateSlugIfNeed($args);
+        $this->generateSlugIfNeeded($args);
     }
 
     /**
-     * @see \Lyssal\SeoBundle\EventListener\PageSlugger::generateSlugIfNeed()
+     * @see \Lyssal\SeoBundle\EventListener\PageSlugger::generateSlugIfNeeded()
      */
     public function postUpdate(LifecycleEventArgs $args)
     {
-        $this->generateSlugIfNeed($args);
+        $this->generateSlugIfNeeded($args);
     }
 
     /**
@@ -57,16 +57,20 @@ class PageSlugger
      *
      * @param \Doctrine\ORM\Event\LifecycleEventArgs $args The arguments
      */
-    protected function generateSlugIfNeed(LifecycleEventArgs $args): void
+    protected function generateSlugIfNeeded(LifecycleEventArgs $args): void
     {
         $entity = $args->getEntity();
 
         if ($entity instanceof PageableInterface) {
-            $this->generateSlugForPageableIfNeed($entity, $args);
+            $this->generateSlugForPageableIfNeeded($entity, $args);
         }
 
-        if ($entity instanceof Page && $entity->getEntity() instanceof PageableInterface) {
-            $this->generateSlugForPageableIfNeed($entity->getEntity(), $args);
+        if ($entity instanceof Page) {
+            if ($entity->getEntity() instanceof PageableInterface) {
+                $this->generateSlugForPageableIfNeeded($entity->getEntity(), $args);
+            } else {
+                $this->generateSlugForPageIfNeeded($entity, $args);
+            }
         }
     }
 
@@ -76,11 +80,25 @@ class PageSlugger
      * @param \Lyssal\SeoBundle\Entity\PageableInterface $pageable The pageable
      * @param \Doctrine\ORM\Event\LifecycleEventArgs     $args     The arguments
      */
-    protected function generateSlugForPageableIfNeed(PageableInterface $pageable, LifecycleEventArgs $args): void
+    protected function generateSlugForPageableIfNeeded(PageableInterface $pageable, LifecycleEventArgs $args): void
     {
         if ($pageable->canGenerateSlug()) {
             $this->slugGenerator->setEntityManager($args->getEntityManager());
-            $this->slugGenerator->generate($pageable);
+            $this->slugGenerator->generateForPageable($pageable);
+        }
+    }
+
+    /**
+     * Generate the slug for the page if needed.
+     *
+     * @param \Lyssal\SeoBundle\Entity\Page          $page The page
+     * @param \Doctrine\ORM\Event\LifecycleEventArgs $args The arguments
+     */
+    protected function generateSlugForPageIfNeeded(Page $page, LifecycleEventArgs $args): void
+    {
+        if (null === $page->getSlug() && $page->isIndependent()) {
+            $this->slugGenerator->setEntityManager($args->getEntityManager());
+            $this->slugGenerator->generateForPage($page);
         }
     }
 }

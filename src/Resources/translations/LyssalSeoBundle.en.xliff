@@ -14,6 +14,10 @@
                 <source>category</source>
                 <target>Category</target>
             </trans-unit>
+            <trans-unit id="content">
+                <source>content</source>
+                <target>Content</target>
+            </trans-unit>
             <trans-unit id="copyright">
                 <source>copyright</source>
                 <target>Copyright</target>
@@ -97,6 +101,10 @@
             <trans-unit id="page">
                 <source>page</source>
                 <target>Page</target>
+            </trans-unit>
+            <trans-unit id="page.independent">
+                <source>page.independent</source>
+                <target>Independent page</target>
             </trans-unit>
             <trans-unit id="priority">
                 <source>priority</source>

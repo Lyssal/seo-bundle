@@ -42,7 +42,20 @@ If a host is not found, It is the website by default which is used.
 
 ### The Page properties
 
-Read the phpdoc for these properties.
+Read the phpdoc for the other properties.
+
+* **independent**
+
+If the page is not linked to an entity.
+
+You can create an independent page for your simpler pages as "About" or "Legal notice".
+Write your content in the `content` property.
+
+You can generate the link in your Twig template this the `entity_path` function (see `LyssalEntityBundle`) or directly use the route `lyssal_seo_page_show`.
+
+```yaml
+<a href="{{ path('lyssal_seo_page_show', { 'slug': 'My_page' }) }}">My page</a>
+```
 
 
 ## The Twig templates
