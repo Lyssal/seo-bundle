@@ -84,6 +84,9 @@ class PageController extends AbstractController
             throw new InvalidArgumentException('The getControllerProperties() method must returned at least the action name.');
         }
 
+        // Add the added query parameters
+        $actionParameters = array_merge($request->query->all(), $actionParameters);
+
         return $this->forward($actionName, $actionParameters);
     }
 }
