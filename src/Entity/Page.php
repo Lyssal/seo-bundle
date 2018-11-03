@@ -85,6 +85,13 @@ class Page extends LyssalPage implements EntityableInterface, RoutableInterface
      *
      * @ORM\Column(type="datetime", nullable=false)
      */
+    protected $createdAt;
+
+    /**
+     * {@inheritDoc}
+     *
+     * @ORM\Column(type="datetime", nullable=false)
+     */
     protected $updatedAt;
 
     /**
@@ -186,6 +193,16 @@ class Page extends LyssalPage implements EntityableInterface, RoutableInterface
         return $this;
     }
 
+
+    /**
+     * Init the creation date.
+     *
+     * @ORM\PrePersist()
+     */
+    public function initCreatedAt()
+    {
+        $this->createdAt = new DateTime();
+    }
 
     /**
      * Init the last modification date.
