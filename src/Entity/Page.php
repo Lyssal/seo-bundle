@@ -83,7 +83,7 @@ class Page extends LyssalPage implements EntityableInterface, RoutableInterface
     /**
      * {@inheritDoc}
      *
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime", nullable=false)
      */
     protected $updatedAt;
 
