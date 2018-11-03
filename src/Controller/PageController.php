@@ -10,9 +10,7 @@ namespace Lyssal\SeoBundle\Controller;
 use Lyssal\EntityBundle\Entity\ControllerableInterface;
 use Lyssal\SeoBundle\Host\CurrentHost;
 use Lyssal\SeoBundle\Website\CurrentWebsite;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -30,11 +28,9 @@ class PageController extends AbstractController
     public function show(Request $request, $slug)
     {
         $host = $this->container->get(CurrentHost::class)->get($request);
-        if (null !== $host) {
-            if (null !== $host->getRedirectionHost()) {
-                $redirectionCode = $host->getRedirectionCode() ?: Response::HTTP_FOUND;
-                return $this->redirect($host->getRedirectionHost()->getDomain().'/'.$slug, $redirectionCode);
-            }
+        $hostRedirection = $this->verifyHost($host, $request);
+        if (null !== $hostRedirection) {
+            return $hostRedirection;
         }
 
         $website = $this->container->get(CurrentWebsite::class)->get($request);

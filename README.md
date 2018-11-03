@@ -16,6 +16,11 @@ Read the [installation documentation](doc/Installation.md).
 Read the [How to use documentation](doc/HowToUse.md).
 
 
+## The sitemap.xml
+
+Read the [sitemap documentation](doc/Sitemap.md).
+
+
 ## About properties
 
 Read the [properties documentation](doc/Properties.md).

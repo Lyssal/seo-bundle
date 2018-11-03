@@ -42,9 +42,14 @@ class CurrentHost
      */
     public function get(Request $request): ?Host
     {
-        $requestHttpHost = $request->getSchemeAndHttpHost();
-        $host = $this->hostManager->findOneBy(['domain' => $requestHttpHost]);
+        return $this->hostManager->findOneBy(['domain' => $this->getDomain($request)]);
+    }
 
-        return $host;
+    /**
+     * @see \Symfony\Component\HttpFoundation\Request::getSchemeAndHttpHost()
+     */
+    public function getDomain(Request $request): string
+    {
+        return $request->getSchemeAndHttpHost();
     }
 }

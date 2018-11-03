@@ -17,6 +17,7 @@ services:
             $pageClassname: '%lyssal.seo.entity.page.class%'
             $websiteClassname: '%lyssal.seo.entity.website.class%'
             $hostManager: '@lyssal.seo.manager.host'
+            $pageManager: '@lyssal.seo.manager.page'
             $websiteManager: '@lyssal.seo.manager.website'
             $appellationManager: '@lyssal.appellation'
 
@@ -32,3 +33,6 @@ services:
     Lyssal\SeoBundle\Router\PageableRouter:
         tags:
             - { name: 'lyssal.entity_router' }
+
+    Lyssal\SeoBundle\Sitemap\SitemapGenerator:
+        public: true
