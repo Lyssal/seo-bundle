@@ -1,7 +1,7 @@
 {
     "name": "lyssal/seo-bundle",
     "description": "A bundle to manage SEO in your website.",
-	"license" : "proprietary",
+    "license" : "MIT",
     "type": "symfony-bundle",
     "authors": [
         {
