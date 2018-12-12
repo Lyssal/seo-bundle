@@ -10,7 +10,4 @@
 {%- if page.author is not empty or page.website.author is not empty -%}
     <meta name="author" content="{{ page.author is not empty ? page.author : page.website.author }}">
 {%- endif -%}
-{%- if page.updatedAt is not null -%}
-    <meta http-equiv="last-modified" content="{{ page.updatedAt|date('Y-m-d H:i') }}">
-{%- endif -%}
 
