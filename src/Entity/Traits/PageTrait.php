@@ -7,6 +7,7 @@
  */
 namespace Lyssal\SeoBundle\Entity\Traits;
 
+use Lyssal\Seo\Model\Page as ModelPage;
 use Lyssal\Seo\Model\Traits\PageTrait as SeoPageTrait;
 use Lyssal\SeoBundle\Entity\Page;
 
@@ -21,7 +22,7 @@ trait PageTrait
     /**
      * @see \Lyssal\Seo\Model\Traits\PageTrait::getPage()
      */
-    public function getPage(): ?Page
+    public function getPage(): ?ModelPage
     {
         if (null !== $this->page) {
             $this->page->setEntity($this);
