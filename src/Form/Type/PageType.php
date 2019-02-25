@@ -11,6 +11,8 @@ use Lyssal\Seo\Model\Page;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -47,36 +49,11 @@ class PageType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $onlineOptions = [
-            'label' => 'online',
-            'translation_domain' => 'LyssalSeoBundle'
-        ];
-        $localeOptions = [
-            'label' => 'locale',
-            'translation_domain' => 'LyssalSeoBundle'
-        ];
-        $indexedOptions = [
-            'label' => 'indexed',
-            'translation_domain' => 'LyssalSeoBundle'
-        ];
-        $followedOptions = [
-            'label' => 'followed',
-            'translation_domain' => 'LyssalSeoBundle'
-        ];
-
-        if (null === $builder->getData()) {
-            $onlineOptions['data'] = true;
-            $localeOptions['data'] = $this->locale;
-            $indexedOptions['data'] = true;
-            $followedOptions['data'] = true;
-        }
-
         $builder
             ->add('website', null, [
                 'label' => 'website',
                 'translation_domain' => 'LyssalSeoBundle'
             ])
-            ->add('online', null, $onlineOptions)
             ->add('title', null, [
                 'label' => 'title',
                 'translation_domain' => 'LyssalSeoBundle'
@@ -89,9 +66,6 @@ class PageType extends AbstractType
                 'label' => 'description',
                 'translation_domain' => 'LyssalSeoBundle'
             ])
-            ->add('locale', null, $localeOptions)
-            ->add('indexed', null, $indexedOptions)
-            ->add('followed', null, $followedOptions)
             ->add('modificationFrequency', ChoiceType::class, [
                 'label' => 'modification_frequency',
                 'required' => false,
@@ -119,6 +93,43 @@ class PageType extends AbstractType
                 'label' => 'content',
                 'translation_domain' => 'LyssalSeoBundle'
             ])
+            ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+                /**
+                 * @var \Lyssal\SeoBundle\Entity\Page $page
+                 */
+                $page = $event->getData();
+                $exists = null !== $page && null !== $page->getId();
+                $onlineOptions = [
+                    'label' => 'online',
+                    'translation_domain' => 'LyssalSeoBundle'
+                ];
+                $localeOptions = [
+                    'label' => 'locale',
+                    'translation_domain' => 'LyssalSeoBundle'
+                ];
+                $indexedOptions = [
+                    'label' => 'indexed',
+                    'translation_domain' => 'LyssalSeoBundle'
+                ];
+                $followedOptions = [
+                    'label' => 'followed',
+                    'translation_domain' => 'LyssalSeoBundle'
+                ];
+
+                if (!$exists) {
+                    $onlineOptions['data'] = true;
+                    $localeOptions['data'] = $this->locale;
+                    $indexedOptions['data'] = true;
+                    $followedOptions['data'] = true;
+                }
+
+                $event->getForm()
+                    ->add('online', null, $onlineOptions)
+                    ->add('locale', null, $localeOptions)
+                    ->add('indexed', null, $indexedOptions)
+                    ->add('followed', null, $followedOptions)
+                ;
+            })
         ;
     }
 
