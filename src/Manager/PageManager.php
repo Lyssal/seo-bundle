@@ -25,13 +25,19 @@ class PageManager extends EntityManager
      */
     public function getEntity(Page $page)
     {
+        if (null !== $page->getEntity()) {
+            return $page->getEntity();
+        }
+
         if (null === $page->getEntityClass() || null === $page->getEntityId()) {
             return null;
         }
 
         $entityRepository = $this->entityManager->getRepository($page->getEntityClass());
+        $entity = $entityRepository->find($page->getEntityId());
+        $page->setEntity($entity);
 
-        return $entityRepository->find($page->getEntityId());
+        return $entity;
     }
 
     /**
