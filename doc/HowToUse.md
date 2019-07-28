@@ -26,6 +26,8 @@ Read the property phpdoc in entities to know more.
 
 ## Example
 
+Your entity:
+
 ```php
 namespace App\Entity;
 
@@ -39,8 +41,15 @@ use Lyssal\SeoBundle\Entity\Traits\PageTrait;
  */
 class MyPageableEntity implements PageableInterface, ControllerableInterface
 {
-    use PageTrait;
+    /**
+     * @var \Lyssal\SeoBundle\Entity\Page The SEO page
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\Seo\Page", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    protected $page;
 
+    use PageTrait;
 
     // My properties and methods
     
@@ -61,4 +70,48 @@ class MyPageableEntity implements PageableInterface, ControllerableInterface
         return [MyPageableEntityController::class.'::show', ['my_pageable_entity' => $this->id]];
     }
 }
+```
+
+Your controller:
+
+```php
+namespace App\Controller;
+
+use App\Entity\MyPageableEntity;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Annotation\Route;
+
+/**
+ * Le contrôleur des services.
+ */
+class MyPageableEntityController extends AbstractController
+{
+    public function show(MyPageableEntity $myPageableEntity)
+    {
+        return $this->render('my_pageable_entity/show.html.twig', [
+            'my_pageable_entity' => $myPageableEntity,
+            'page' => $myPageableEntity->getPage(),
+        ]);
+    }
+}
+```
+
+Your base template:
+
+```twig
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        {% block head_metas %}
+            {% if page is defined %}
+                {{ include('@LyssalSeo/page/_head/default_tags.html.twig') }}
+            {% endif %}
+        {% endblock %}
+        ...
+    </head>
+    <body>
+        ...
+    </body>
+</html>
 ```

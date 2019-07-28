@@ -9,12 +9,41 @@ composer require lyssal/seo-bundle
 
 * Register manually the installed bundles in your kernel file if needed
 
-* Overload the mapped super classes
+* Overload the mapped super classes :
 
-* Updates the config parameters
+Entities are `Host`, `Website` and `Page`.
+
+For example the `Page` entity:
+
+```php
+namespace App\Entity\Seo;
+
+use Doctrine\ORM\Mapping as ORM;
+use Lyssal\SeoBundle\Entity\Page as LyssalPage;
+
+/**
+ * @inheritDoc
+ *
+ * @ORM\Entity()
+ */
+class Page extends LyssalPage
+{
+    // Add your custom properties / methods here
+}
+```
+
+* Updates the config parameters:
 
 All the `lyssal.seo.entity.*.class` parameters.
-See the other parameters you can overload.
+
+For example:
+
+```yaml
+parameters:
+    lyssal.seo.entity.host.class: 'App\Entity\Seo\Host'
+    lyssal.seo.entity.page.class: 'App\Entity\Seo\Page'
+    lyssal.seo.entity.website.class: 'App\Entity\Seo\Website'
+```
 
 * Update your database
 
