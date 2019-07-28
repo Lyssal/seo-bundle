@@ -26,6 +26,17 @@ Read the [sitemap documentation](doc/Sitemap.md).
 Read the [properties documentation](doc/Properties.md).
 
 
+## Automatically get the Page entity
+
+For performance reason, the Page entity property is null by default but you can change this behavior by copy this code in your `services.yaml`:
+
+```yaml
+Lyssal\SeoBundle\EventListener\PageEntityGetter:
+    tags:
+        - { name: 'doctrine.event_listener', event: 'postLoad' }
+```
+
+
 ## EasyAdmin
 
 If you use EasyAdmin, please read the [EasyAdmin documentation](doc/EasyAdmin.md).

@@ -6,16 +6,20 @@ services:
     _defaults:
         autowire: true
 
+    # Copy and uncomment this if you want to automatically get the entity from a Page.
+    # Pay attention to optimization, a query will be launched for each page.
+    #Lyssal\SeoBundle\EventListener\PageEntityGetter:
+    #    tags:
+    #        - { name: 'doctrine.event_listener', event: 'postLoad' }
+
     lyssal.seo.event_listener.page_entity_setter:
         class: '%lyssal.seo.event_listener.page_entity_setter.class%'
-        public: false
         tags:
             - { name: 'doctrine.event_listener', event: 'postPersist' }
             - { name: 'doctrine.event_listener', event: 'postUpdate' }
 
     lyssal.seo.event_listener.page_slugger:
         class: '%lyssal.seo.event_listener.page_slugger.class%'
-        public: false
         tags:
             - { name: 'doctrine.event_listener', event: 'postPersist' }
             - { name: 'doctrine.event_listener', event: 'postUpdate' }
