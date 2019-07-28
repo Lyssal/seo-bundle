@@ -12,7 +12,7 @@ services:
         autoconfigure: true
         public: false
         bind:
-            $locale: '%locale%'
+            $locale: '%kernel.default_locale%'
             $hostClassname: '%lyssal.seo.entity.host.class%'
             $pageClassname: '%lyssal.seo.entity.page.class%'
             $websiteClassname: '%lyssal.seo.entity.website.class%'
