@@ -2,6 +2,26 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="fr" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="action.new">
+                <source>action.new</source>
+                <target>New</target>
+                <note>EasyAdmin translation.</note>
+            </trans-unit>
+            <trans-unit id="action.list">
+                <source>action.list</source>
+                <target>Return to the list</target>
+                <note>EasyAdmin translation.</note>
+            </trans-unit>
+            <trans-unit id="action.save">
+                <source>action.save</source>
+                <target>Save</target>
+                <note>EasyAdmin translation.</note>
+            </trans-unit>
+            <trans-unit id="action.search">
+                <source>action.search</source>
+                <target>Search</target>
+                <note>EasyAdmin translation.</note>
+            </trans-unit>
             <trans-unit id="author">
                 <source>author</source>
                 <target>Author</target>
@@ -74,9 +94,18 @@
                 <source>host</source>
                 <target>Host</target>
             </trans-unit>
+            <trans-unit id="hosts">
+                <source>hosts</source>
+                <target>Hosts</target>
+            </trans-unit>
             <trans-unit id="indexed">
                 <source>indexed</source>
                 <target>Indexed</target>
+            </trans-unit>
+            <trans-unit id="label.form.empty_value">
+                <source>label.form.empty_value</source>
+                <target>Empty</target>
+                <note>EasyAdmin translation.</note>
             </trans-unit>
             <trans-unit id="locale">
                 <source>locale</source>
