@@ -5,16 +5,16 @@
  * @copyright Rémi Leclerc
  * @author Rémi Leclerc
  */
-namespace Lyssal\SeoBundle\Manager;
+namespace Lyssal\SeoBundle\Doctrine\Administrator;
 
-use Lyssal\Doctrine\Orm\Manager\EntityManager;
+use Lyssal\Doctrine\Orm\Administrator\EntityAdministrator;
 use Lyssal\Doctrine\Orm\QueryBuilder;
 use Lyssal\SeoBundle\Entity\Website;
 
 /**
  * @inheritDoc
  */
-class WebsiteManager extends EntityManager
+class WebsiteAdministrator extends EntityAdministrator
 {
     /**
      * Get website by its domain.

@@ -5,16 +5,16 @@
  * @copyright Rémi Leclerc
  * @author Rémi Leclerc
  */
-namespace Lyssal\SeoBundle\Manager;
+namespace Lyssal\SeoBundle\Doctrine\Administrator;
 
-use Lyssal\Doctrine\Orm\Manager\EntityManager;
+use Lyssal\Doctrine\Orm\Administrator\EntityAdministrator;
 use Lyssal\SeoBundle\Entity\Page;
 use Lyssal\SeoBundle\Entity\Website;
 
 /**
  * @inheritDoc
  */
-class PageManager extends EntityManager
+class PageAdministrator extends EntityAdministrator
 {
     /**
      * Get the linked entity.

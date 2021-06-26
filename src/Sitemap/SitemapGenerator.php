@@ -7,10 +7,9 @@
  */
 namespace Lyssal\SeoBundle\Sitemap;
 
-use Lyssal\SeoBundle\Entity\Host;
 use Lyssal\SeoBundle\Entity\Page;
 use Lyssal\SeoBundle\Entity\Website;
-use Lyssal\SeoBundle\Manager\PageManager;
+use Lyssal\SeoBundle\Doctrine\Administrator\PageAdministrator;
 use Thepixeldeveloper\Sitemap\Drivers\XmlWriterDriver;
 use Thepixeldeveloper\Sitemap\Url;
 use Thepixeldeveloper\Sitemap\Urlset;
@@ -21,7 +20,7 @@ use Thepixeldeveloper\Sitemap\Urlset;
 class SitemapGenerator
 {
     /**
-     * @var \Lyssal\SeoBundle\Manager\PageManager The page manager
+     * @var \Lyssal\SeoBundle\Doctrine\Administrator\PageAdministrator The page manager
      */
     protected $pageManager;
 
@@ -29,9 +28,9 @@ class SitemapGenerator
     /**
      * SitemapGenerator constructor.
      *
-     * @param \Lyssal\SeoBundle\Manager\PageManager $pageManager The page manager
+     * @param \Lyssal\SeoBundle\Doctrine\Administrator\PageAdministrator $pageManager The page manager
      */
-    public function __construct(PageManager $pageManager)
+    public function __construct(PageAdministrator $pageManager)
     {
         $this->pageManager = $pageManager;
     }

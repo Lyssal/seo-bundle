@@ -54,6 +54,8 @@ class Page extends LyssalPage implements EntityableInterface, RoutableInterface
      * {@inheritDoc}
      *
      * @ORM\Column(type="string", length=255, nullable=false)
+     *
+     * @Assert\Length(max=255)
      */
     protected $title;
 
@@ -61,6 +63,8 @@ class Page extends LyssalPage implements EntityableInterface, RoutableInterface
      * {@inheritDoc}
      *
      * @ORM\Column(type="string", length=768, nullable=true, unique=true)
+     *
+     * @Assert\Length(max=768)
      */
     protected $slug;
 
@@ -68,6 +72,8 @@ class Page extends LyssalPage implements EntityableInterface, RoutableInterface
      * {@inheritDoc}
      *
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @Assert\Length(max=255)
      */
     protected $description;
 
@@ -135,6 +141,8 @@ class Page extends LyssalPage implements EntityableInterface, RoutableInterface
      * {@inheritDoc}
      *
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @Assert\Length(max=255)
      */
     protected $author;
 

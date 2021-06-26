@@ -8,7 +8,7 @@
 namespace Lyssal\SeoBundle\Host;
 
 use Lyssal\SeoBundle\Entity\Host;
-use Lyssal\SeoBundle\Manager\HostManager;
+use Lyssal\SeoBundle\Doctrine\Administrator\HostAdministrator;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 class CurrentHost
 {
     /**
-     * @var \Lyssal\SeoBundle\Manager\HostManager The Host manager
+     * @var \Lyssal\SeoBundle\Doctrine\Administrator\HostAdministrator The Host manager
      */
     protected $hostManager;
 
@@ -25,9 +25,9 @@ class CurrentHost
     /**
      * CurrentHost constructor.
      *
-     * @param \Lyssal\SeoBundle\Manager\HostManager $hostManager The Host manager
+     * @param \Lyssal\SeoBundle\Doctrine\Administrator\HostAdministrator $hostManager The Host manager
      */
-    public function __construct(HostManager $hostManager)
+    public function __construct(HostAdministrator $hostManager)
     {
         $this->hostManager = $hostManager;
     }

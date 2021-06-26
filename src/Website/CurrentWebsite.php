@@ -10,7 +10,7 @@ namespace Lyssal\SeoBundle\Website;
 use Lyssal\SeoBundle\Entity\Host;
 use Lyssal\SeoBundle\Entity\Website;
 use Lyssal\SeoBundle\Host\CurrentHost;
-use Lyssal\SeoBundle\Manager\WebsiteManager;
+use Lyssal\SeoBundle\Doctrine\Administrator\WebsiteAdministrator;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -24,7 +24,7 @@ class CurrentWebsite
     protected $currentHost;
 
     /**
-     * @var \Lyssal\SeoBundle\Manager\WebsiteManager The Website manager
+     * @var \Lyssal\SeoBundle\Doctrine\Administrator\WebsiteAdministrator The Website manager
      */
     protected $websiteManager;
 
@@ -32,10 +32,10 @@ class CurrentWebsite
     /**
      * CurrentWebsite constructor.
      *
-     * @param \Lyssal\SeoBundle\Manager\WebsiteManager $websiteManager The Website manager
-     * @param \Lyssal\SeoBundle\Host\CurrentHost       $currentHost    The current host service
+     * @param \Lyssal\SeoBundle\Doctrine\Administrator\WebsiteAdministrator $websiteManager The Website manager
+     * @param \Lyssal\SeoBundle\Host\CurrentHost                            $currentHost    The current host service
      */
-    public function __construct(CurrentHost $currentHost, WebsiteManager $websiteManager)
+    public function __construct(CurrentHost $currentHost, WebsiteAdministrator $websiteManager)
     {
         $this->currentHost = $currentHost;
         $this->websiteManager = $websiteManager;

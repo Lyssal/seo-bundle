@@ -44,7 +44,7 @@ class PageController extends AbstractController
         if ('' === $slug && null !== $website->getHomePage()) {
             $page = $website->getHomePage();
         } else {
-            $page = $this->container->get('lyssal.seo.manager.page')->findOneBy(['website' => $website, 'slug' => $slug]);
+            $page = $this->container->get('lyssal.seo.administrator.page')->findOneBy(['website' => $website, 'slug' => $slug]);
         }
 
         if (null === $page) {
@@ -55,7 +55,7 @@ class PageController extends AbstractController
             return $this->render('@LyssalSeo/page/show.html.twig', ['page' => $page]);
         }
 
-        $entity = $this->container->get('lyssal.seo.manager.page')->getEntity($page);
+        $entity = $this->container->get('lyssal.seo.administrator.page')->getEntity($page);
         if (null === $entity) {
             throw $this->createNotFoundException('The entity for the page with the slug '.$slug.' has not been found.');
         }

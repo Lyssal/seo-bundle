@@ -16,9 +16,9 @@ services:
             $hostClassname: '%lyssal.seo.entity.host.class%'
             $pageClassname: '%lyssal.seo.entity.page.class%'
             $websiteClassname: '%lyssal.seo.entity.website.class%'
-            $hostManager: '@lyssal.seo.manager.host'
-            $pageManager: '@lyssal.seo.manager.page'
-            $websiteManager: '@lyssal.seo.manager.website'
+            $hostManager: '@lyssal.seo.administrator.host'
+            $pageManager: '@lyssal.seo.administrator.page'
+            $websiteManager: '@lyssal.seo.administrator.website'
             $appellationManager: '@lyssal.appellation'
 
     Lyssal\SeoBundle\:

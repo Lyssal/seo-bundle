@@ -15,7 +15,7 @@
         "symfony/validator": "~4",
         "lyssal/seo": "~0.1",
         "lyssal/entity-bundle": "~0.2",
-        "lyssal/doctrine-orm-bundle": "~0.1",
+        "lyssal/doctrine-orm-bundle": "~0.2",
         "thepixeldeveloper/sitemap": "^5.1"
     },
     "autoload": {
