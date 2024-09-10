@@ -10,9 +10,9 @@
         }
     ],
     "require": {
-        "symfony/form": "~4",
-        "symfony/http-foundation": "~4",
-        "symfony/validator": "~4",
+        "symfony/form": "~5",
+        "symfony/http-foundation": "~5",
+        "symfony/validator": "~5",
         "lyssal/seo": "~0.1",
         "lyssal/entity-bundle": "~0.2",
         "lyssal/doctrine-orm-bundle": "~0.2",
