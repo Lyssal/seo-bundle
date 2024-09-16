@@ -10,7 +10,6 @@ namespace Lyssal\SeoBundle\Entity;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Lyssal\EntityBundle\Entity\EntityableInterface;
-use Lyssal\EntityBundle\Entity\RoutableInterface;
 use Lyssal\EntityBundle\Entity\Traits\EntityTrait;
 use Lyssal\Seo\Model\Page as LyssalPage;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -21,7 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\MappedSuperclass(repositoryClass="Lyssal\SeoBundle\Repository\PageRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Page extends LyssalPage implements EntityableInterface, RoutableInterface
+class Page extends LyssalPage implements EntityableInterface
 {
     use EntityTrait;
 
@@ -221,14 +220,5 @@ class Page extends LyssalPage implements EntityableInterface, RoutableInterface
     public function initUpdatedAt()
     {
         $this->updatedAt = new DateTime();
-    }
-
-
-    /**
-     * @see \Lyssal\EntityBundle\Entity\RoutableInterface::getRouteProperties()
-     */
-    public function getRouteProperties(): array
-    {
-        return ['lyssal_seo_page_show', ['slug' => $this->slug]];
     }
 }

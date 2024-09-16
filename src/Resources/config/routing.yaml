@@ -1,7 +1,0 @@
-lyssal_seo_sitemap:
-    resource: '@LyssalSeoBundle/Controller/SitemapController.php'
-    type: 'annotation'
-
-lyssal_seo_page:
-    resource: '@LyssalSeoBundle/Controller/PageController.php'
-    type: 'annotation'
