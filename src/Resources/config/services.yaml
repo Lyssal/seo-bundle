@@ -30,9 +30,5 @@ services:
     Lyssal\SeoBundle\Website\CurrentWebsite:
         public: true
 
-    Lyssal\SeoBundle\Router\PageableRouter:
-        tags:
-            - { name: 'lyssal.entity_router' }
-
     Lyssal\SeoBundle\Sitemap\SitemapGenerator:
         public: true
