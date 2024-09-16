@@ -1,3 +1,0 @@
-imports:
-    - { resource: 'easyadmin/page.yaml' }
-    - { resource: 'easyadmin/website.yaml' }
