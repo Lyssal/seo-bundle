@@ -20,143 +20,57 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\MappedSuperclass(repositoryClass="Lyssal\SeoBundle\Repository\PageRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Page extends LyssalPage implements EntityableInterface
+abstract class Page extends LyssalPage implements EntityableInterface
 {
     use EntityTrait;
 
-
     /**
      * @var int The ID
-     *
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
      */
+    #[ORM\Id()]
+    #[ORM\GeneratedValue()]
+    #[ORM\Column(type: 'integer')]
     protected $id;
 
-    /**
-     * {@inheritDoc}
-     *
-     * @ORM\ManyToOne(targetEntity="Website", inversedBy="pages")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    protected $website;
-
-    /**
-     * {@inheritDoc}
-     *
-     * @ORM\Column(type="boolean", nullable=false)
-     */
+    #[ORM\Column(type: 'boolean', nullable: false)]
     protected $online;
 
-    /**
-     * {@inheritDoc}
-     *
-     * @ORM\Column(type="string", length=255, nullable=false)
-     *
-     * @Assert\Length(max=255)
-     */
-    protected $title;
-
-    /**
-     * {@inheritDoc}
-     *
-     * @ORM\Column(type="string", length=768, nullable=true, unique=true)
-     *
-     * @Assert\Length(max=768)
-     */
-    protected $slug;
-
-    /**
-     * {@inheritDoc}
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
-     *
-     * @Assert\Length(max=255)
-     */
-    protected $description;
-
-    /**
-     * {@inheritDoc}
-     *
-     * @ORM\Column(type="string", length=2, nullable=true)
-     *
-     * @Assert\Length(min=2, max=2)
-     */
-    protected $locale;
-
-    /**
-     * {@inheritDoc}
-     *
-     * @ORM\Column(type="datetime", nullable=false)
-     */
+    #[ORM\Column(type: 'datetime', nullable: false)]
     protected $createdAt;
 
-    /**
-     * {@inheritDoc}
-     *
-     * @ORM\Column(type="datetime", nullable=false)
-     */
+    #[ORM\Column(type: 'datetime', nullable: false)]
     protected $updatedAt;
 
-    /**
-     * {@inheritDoc}
-     *
-     * @ORM\Column(type="boolean", nullable=false)
-     */
+    #[ORM\Column(type: 'boolean', nullable: false)]
     protected $indexed;
 
-    /**
-     * {@inheritDoc}
-     *
-     * @ORM\Column(type="boolean", nullable=false)
-     */
+    #[ORM\Column(type: 'boolean', nullable: false)]
     protected $followed;
 
-    /**
-     * {@inheritDoc}
-     *
-     * @ORM\Column(type="string", length=8, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 8, nullable: true)]
     protected $modificationFrequency;
 
-    /**
-     * {@inheritDoc}
-     *
-     * @ORM\Column(type="smallint", nullable=true)
-     *
-     * @Assert\Range(min=0, max=100)
-     */
+    #[ORM\Column(type: 'smallint', nullable: true)]
+    #[Assert\Range(min: 0, max: 100)]
     protected $priority;
 
-    /**
-     * {@inheritDoc}
-     *
-     * @ORM\Column(type="string", length=128, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 128, nullable: true)]
     protected $category;
 
-    /**
-     * {@inheritDoc}
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
-     *
-     * @Assert\Length(max=255)
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Length(max: 255)]
     protected $author;
 
     /**
      * @var bool If the page is not linked to an entity
-     *
-     * @ORM\Column(type="boolean", nullable=false, options={"default"=false})
      */
+    #[ORM\Column(type: 'boolean', nullable: false, options: ['default' => false])]
     protected $independent;
 
     /**
      * @var string The content which can be use an introduction or content if the page is independent
-     *
-     * @ORM\Column(type="text", nullable=true)
      */
+    #[ORM\Column(type: 'text', nullable: true)]
     protected $content;
 
 
@@ -203,9 +117,8 @@ class Page extends LyssalPage implements EntityableInterface
 
     /**
      * Init the creation date.
-     *
-     * @ORM\PrePersist()
      */
+    #[ORM\PrePersist()]
     public function initCreatedAt()
     {
         $this->createdAt = new DateTime();
@@ -213,10 +126,9 @@ class Page extends LyssalPage implements EntityableInterface
 
     /**
      * Init the last modification date.
-     *
-     * @ORM\PrePersist()
-     * @ORM\PreUpdate()
      */
+    #[ORM\PrePersist()]
+    #[ORM\PreUpdate()]
     public function initUpdatedAt()
     {
         $this->updatedAt = new DateTime();

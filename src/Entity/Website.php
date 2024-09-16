@@ -37,14 +37,6 @@ class Website extends LyssalWebsite
     protected $title;
 
     /**
-     * {@inheritDoc}
-     *
-     * @ORM\ManyToOne(targetEntity="Page")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    protected $homePage;
-
-    /**
      * @var bool If It is the website by default
      *
      * @ORM\Column(type="boolean", nullable=false, options={"default"=false})
