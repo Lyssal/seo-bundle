@@ -82,17 +82,13 @@ class Website extends LyssalWebsite
 
     /**
      * @var \Doctrine\Common\Collections\Collection The pages
-     *
-     * @ORM\OneToMany(targetEntity="Page", mappedBy="website")
      */
     protected $pages;
 
     /**
      * @var \Doctrine\Common\Collections\Collection The hosts
-     *
-     * @ORM\OneToMany(targetEntity="Host", mappedBy="website", cascade={"persist"}, orphanRemoval=true)
      */
-    protected $hosts;
+    protected Collection $hosts;
 
 
     public function __construct()

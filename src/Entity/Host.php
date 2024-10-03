@@ -36,19 +36,10 @@ class Host extends LyssalHost
      */
     protected $domain;
 
-    /**
-     * {@inheritDoc}
-     *
-     * @ORM\ManyToOne(targetEntity="Website", inversedBy="hosts")
-     * @ORM\JoinColumn(nullable=false)
-     */
     protected $website;
 
     /**
      * @var \Lyssal\SeoBundle\Entity\Host The redirection host
-     *
-     * @ORM\ManyToOne(targetEntity="Host")
-     * @ORM\JoinColumn(nullable=true)
      */
     protected $redirectionHost;
 
